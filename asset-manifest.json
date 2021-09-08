@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/wotr-char-builder/static/css/main.a617e044.chunk.css",
+    "main.css": "/wotr-char-builder/static/css/main.5739ad41.chunk.css",
     "main.js": "/wotr-char-builder/static/js/main.4f5a7990.chunk.js",
     "main.js.map": "/wotr-char-builder/static/js/main.4f5a7990.chunk.js.map",
     "runtime-main.js": "/wotr-char-builder/static/js/runtime-main.e851302c.js",
@@ -10,14 +10,14 @@
     "static/js/3.c3a34a03.chunk.js": "/wotr-char-builder/static/js/3.c3a34a03.chunk.js",
     "static/js/3.c3a34a03.chunk.js.map": "/wotr-char-builder/static/js/3.c3a34a03.chunk.js.map",
     "index.html": "/wotr-char-builder/index.html",
-    "static/css/main.a617e044.chunk.css.map": "/wotr-char-builder/static/css/main.a617e044.chunk.css.map",
+    "static/css/main.5739ad41.chunk.css.map": "/wotr-char-builder/static/css/main.5739ad41.chunk.css.map",
     "static/js/2.07a36ab8.chunk.js.LICENSE.txt": "/wotr-char-builder/static/js/2.07a36ab8.chunk.js.LICENSE.txt",
     "static/media/logo.6ce24c58.svg": "/wotr-char-builder/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e851302c.js",
     "static/js/2.07a36ab8.chunk.js",
-    "static/css/main.a617e044.chunk.css",
+    "static/css/main.5739ad41.chunk.css",
     "static/js/main.4f5a7990.chunk.js"
   ]
 }
