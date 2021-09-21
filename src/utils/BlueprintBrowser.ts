@@ -9,7 +9,6 @@
 //   }
 // }
 import fs from "fs";
-import { CharacterLevel } from "../components/characterLibrary/characterBuilder/helper";
 
 import {
   Reduction,
@@ -94,12 +93,6 @@ interface JSFeatBlueprint {
   linkedAbilities: string[];
 }
 
-interface ClassRequirement {
-  className: string;
-  requiredLevel: number;
-  spellLevel: number;
-}
-
 export const ERRORS = {
   LOCATE_CLASS: "CLASS_NOT_FOUND",
 } as const;
@@ -124,10 +117,14 @@ export type AbilityTarget =
 export type SpellRange = "CLOSE" | "MEDIUM" | "LONG" | null;
 export type SpellSave = "FORT" | "REF" | "WILL" | null;
 export type SpellCastTime = "FREE" | "SWIFT" | "MOVE" | "STANDARD" | "ROUND";
-
+interface SpellLevel {
+  className: string;
+  level: number;
+}
 interface JSSpellBlueprint {
   spellName: string;
   classRequired: ClassRequirement[];
+  spellLevel: SpellLevel[];
   description: string;
   save: SpellSave;
   applySR: boolean;
@@ -249,6 +246,26 @@ const DamageTypes = [
   "FORCE",
   "MISC",
 ] as const;
+
+const Attributes = ["STR", "DEX", "CON", "INT", "WIS", "CHA"] as const;
+
+const Skills = [
+  "athletics",
+  "mobility",
+  "trickery",
+  "stealth",
+  "knowArcana",
+  "knowWorld",
+  "loreNature",
+  "loreReligion",
+  "perception",
+  "persuasion",
+  "useMagicDevice",
+] as const;
+
+type Attribute = typeof Attributes[number];
+
+type Skill = typeof Skills[number];
 
 type WeaponTag = typeof WeaponTags[number];
 
@@ -404,8 +421,8 @@ interface ModifierObject {
   };
   martial: {
     weaponProf: WeaponModifier[];
-    dr: Reduction[];
-    er: Resistance[];
+    // dr: Reduction[];
+    // er: Resistance[];
   };
 }
 
@@ -452,6 +469,52 @@ interface JSClassBlueprint {
   spellProgress: SpellProgression[];
   abilityProgress: AbilityProgression[];
 }
+
+interface Requirement {
+  description: string;
+}
+
+interface FeatureRequirement extends Requirement {
+  featureName: string;
+  featureType: "SPELL" | "FEAT" | "ABILITY" | "MISC";
+}
+
+interface LimitRequirement extends Requirement {
+  requiredValue: number;
+}
+
+interface LevelRequirement extends LimitRequirement {}
+interface ClassRequirement extends LimitRequirement {
+  className: string;
+}
+
+interface AttributeRequirement extends LimitRequirement {
+  attributeName: Attribute;
+}
+
+interface SkillRequirement extends LimitRequirement {
+  // list skill names
+  skillName: string;
+}
+
+interface BABRequirement extends LimitRequirement {}
+
+interface GenericFeature {
+  name: string;
+  description: string;
+  requirements: (
+    | ClassRequirement
+    | AttributeRequirement
+    | SkillRequirement
+    | BABRequirement
+    | LevelRequirement
+    | FeatureRequirement
+  )[];
+  // prerequisite: GenericFeature[];
+}
+interface Feat extends GenericFeature {}
+interface Spell extends GenericFeature {}
+interface Ability extends GenericFeature {}
 
 interface Choice {
   name: string;
