@@ -240,6 +240,31 @@ class CharacterSheet implements CharacterSheetType {
       willSave: 0,
       speed: 0,
     };
+    this.abilities = {
+      special: [],
+      feats: [],
+      spells: [],
+      traits: [],
+    };
+    this.skills = {
+      athletics: 0,
+      persuasion: 0,
+      knwArcana: 0,
+      knwWorld: 0,
+      loreNature: 0,
+      loreReligion: 0,
+      mobility: 0,
+      perception: 0,
+      stealth: 0,
+      trickery: 0,
+      umd: 0,
+    };
+    this.spells = [];
+    this.martial = {
+      weaponProf: ["SIMPLE"],
+      dr: [],
+      er: [],
+    };
   }
 }
 

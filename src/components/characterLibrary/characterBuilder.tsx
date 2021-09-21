@@ -10,3 +10,4 @@
  * deity ->
  * alignment
  */
+export {};
